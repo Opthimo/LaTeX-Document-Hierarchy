@@ -1,51 +1,150 @@
 <!---
 {
-  "depends_on": [],
+  "id": "11830a64-a50f-461e-8379-ae9511768cc4",
+  "depends_on": ["00650b50-14de-471d-a347-246f47ffadde"],
   "author": "Stephan Bökelmann",
-  "first_used": "2025-03-17",
-  "keywords": ["learning", "exercises", "education", "practice"]
+  "first_used": "2025-06-02",
+  "keywords": ["LaTeX", "document structure", "chapters", "sections", "vim"]
 }
 --->
 
-# Learning Through Exercises
+# Document Structure Hierarchy in LaTeX
 
-## Introduction
-Learning by doing is one of the most effective methods to acquire new knowledge and skills. Rather than passively consuming information, actively engaging in problem-solving fosters deeper understanding and long-term retention. By working through structured exercises, students can grasp complex concepts in a more intuitive and applicable way. This approach is particularly beneficial in technical fields like programming, mathematics, and engineering.
+> In this exercise you will learn how to structure LaTeX documents using parts, chapters, sections, subsections, and paragraphs. Furthermore we will explore how different document classes influence the document hierarchy.
+
+### Introduction
+
+A well-structured document is easier to read, maintain, and navigate. LaTeX provides a hierarchical system of sectioning commands that reflect the logical structure of your document. These sectioning commands automatically handle numbering, formatting, and inclusion in the table of contents.
+
+The available levels depend on the chosen `documentclass`:
+
+* In `article` class: `\section`, `\subsection`, `\subsubsection`, `\paragraph`, `\subparagraph`
+* In `report` and `book` classes: `\part`, `\chapter`, followed by the same lower levels
+
+Here is the general hierarchy (top to bottom):
+
+1. `\part`
+2. `\chapter` *(only in `report` and `book`)*
+3. `\section`
+4. `\subsection`
+5. `\subsubsection`
+6. `\paragraph`
+7. `\subparagraph`
+
+LaTeX automatically numbers these elements (unless starred versions like `\section*{...}` are used) and formats them appropriately.
+
+Understanding this hierarchy is essential for writing larger documents such as theses, books, reports, or technical manuals.
 
 ### Further Readings and Other Sources
-- [The Importance of Practice in Learning](https://www.sciencedirect.com/science/article/pii/S036013151300062X)
-- "The Art of Learning" by Josh Waitzkin
-- [How to Learn Effectively: 5 Key Strategies](https://www.edutopia.org/article/5-research-backed-learning-strategies)
+
+* [Overleaf: Sections and Chapters](https://www.overleaf.com/learn/latex/Sections_and_chapters)
+* [LaTeX Wikibook - Sectioning](https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Sectioning_commands)
+* [YouTube - LaTeX Sectioning Tutorial](https://www.youtube.com/watch?v=XtFMnsyecp8)
+* [The Not So Short Introduction to LaTeX (Document Structure Section)](https://tobi.oetiker.ch/lshort/lshort.pdf)
+
+---
 
 ## Tasks
-1. **Write a Summary**: Summarize the concept of "learning by doing" in 3-5 sentences.
-2. **Example Identification**: List three examples from your own experience where learning through exercises helped you understand a topic better.
-3. **Create an Exercise**: Design a simple exercise for a topic of your choice that someone else could use to practice.
-4. **Follow an Exercise**: Find an online tutorial that includes exercises and complete at least two of them.
-5. **Modify an Existing Exercise**: Take a basic problem from a textbook or online course and modify it to make it slightly more challenging.
-6. **Pair Learning**: Explain a concept to a partner and guide them through an exercise without giving direct answers.
-7. **Review Mistakes**: Look at an exercise you've previously completed incorrectly. Identify why the mistake happened and how to prevent it in the future.
-8. **Time Challenge**: Set a timer for 10 minutes and try to solve as many simple exercises as possible on a given topic.
-9. **Self-Assessment**: Create a checklist to evaluate your own performance in completing exercises effectively.
-10. **Reflect on Progress**: Write a short paragraph on how this structured approach to exercises has influenced your learning.
 
-<details>
-  <summary>Tip for Task 5</summary>
-  Try making small adjustments first, such as increasing the difficulty slightly or adding an extra constraint.
-</details>
+### Task 0: Create a New LaTeX File Using the `book` Class
+
+Open Vim and create a new file:
+
+```bash
+vim structure.tex
+```
+
+Insert the following base structure:
+
+```latex
+\documentclass{book}
+\begin{document}
+
+Your content goes here.
+
+\end{document}
+```
+
+Save and exit Vim.
+
+### Task 1: Create a Complete Hierarchical Structure
+
+Replace `Your content goes here.` with:
+
+```latex
+\part{Fundamentals}
+
+\chapter{Introduction}
+
+\section{Motivation}
+This document demonstrates the LaTeX document structure.
+
+\subsection{Background}
+A brief background.
+
+\subsubsection{Historical Notes}
+Some history here.
+
+\paragraph{Key Insight}
+Important detail.
+
+\subparagraph{Further Clarification}
+Even more detail.
+
+\chapter{Advanced Topics}
+
+\section{Challenges}
+Challenges in document structuring.
+```
+
+Compile using:
+
+```bash
+pdflatex structure.tex
+```
+
+### Task 2: Switch to the `article` Class and Observe Differences
+
+Edit the first line of your file to:
+
+```latex
+\documentclass{article}
+```
+
+Recompile. Observe:
+
+* `\part` is still valid.
+* `\chapter` causes an error (not defined in `article` class).
+* The other commands (`\section`, `\subsection`, etc.) still work.
+
+### Task 3: Create a Table of Contents
+
+Before `\end{document}`, add:
+
+```latex
+\tableofcontents
+```
+
+Recompile twice to ensure the table of contents is generated correctly.
+
+```bash
+pdflatex structure.tex
+pdflatex structure.tex
+```
+
+Verify that all sections and subsections are listed in the table of contents with correct numbering.
+
+---
 
 ## Questions
-1. What are the main benefits of learning through exercises compared to passive learning?
-2. How do exercises improve long-term retention?
-3. Can you think of a subject where learning through exercises might be less effective? Why?
-4. What role does feedback play in learning through exercises?
-5. How can self-designed exercises improve understanding?
-6. Why is it beneficial to review past mistakes in exercises?
-7. How does explaining a concept to someone else reinforce your own understanding?
-8. What strategies can you use to stay motivated when practicing with exercises?
-9. How can timed challenges contribute to learning efficiency?
-10. How do exercises help bridge the gap between theory and practical application?
+
+1. Which document classes support `\chapter`?
+2. What happens if you use `\chapter` in `article` class?
+3. How does LaTeX determine numbering for sectioning commands?
+4. Why is it useful to include a table of contents in longer documents?
+
+---
 
 ## Advice
-Practice consistently and seek out diverse exercises that challenge different aspects of a topic. Combine exercises with reflection and feedback to maximize your learning efficiency. Don't hesitate to adapt exercises to fit your own needs and ensure that you're actively engaging with the material, rather than just going through the motions.
 
+Always structure your documents logically using the full hierarchy LaTeX provides. Avoid manually formatting section headers or numbering — let LaTeX handle these automatically. When writing longer documents, start with an outline using `\part`, `\chapter`, and `\section` commands. As the document grows, you can easily insert, reorder, or modify sections without breaking the structure. Proper use of sectioning commands also ensures consistent table of contents generation and cross-referencing later.
