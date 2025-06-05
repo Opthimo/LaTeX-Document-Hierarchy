@@ -139,9 +139,23 @@ Verify that all sections and subsections are listed in the table of contents wit
 ## Questions
 
 1. Which document classes support `\chapter`?
+
+The \chapter command is supported in report, book, and custom classes.
+
 2. What happens if you use `\chapter` in `article` class?
+
+Using \chapter in the article class results in an error: 
+LaTeX does not recognize it since article skips the chapter level.
+
 3. How does LaTeX determine numbering for sectioning commands?
+
+LaTeX numbers sectioning commands hierarchically based on their level (e.g., 
+chapters contain sections, which contain subsections), following the document class’s structure.
+
 4. Why is it useful to include a table of contents in longer documents?
+
+A table of contents provides an organized overview, helping readers navigate and 
+understand the structure of longer documents efficiently.
 
 ---
 
